@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Poem</title>
+  <style>
+    body {
+      font-family: 'Courier New', Courier, monospace;
+      background: linear-gradient(to bottom, #fbd3e9, #bb377d);
+      color: #fff;
+      margin: 0;
+      padding: 20px;
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    .container {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      box-sizing: border-box;
+      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      overflow: auto;
+      height: 100%;
+    }
+
+    #poem {
+      white-space: pre-wrap;
+      line-height: 1.8;
+      font-size: 1.2rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    button {
+      font-size: 1rem;
+      color: #fff;
+      background: #ff85a1;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #ff5680;
+      
+    }
+
+    .button-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+   <div class="back">
+    <button onclick="window.location.href='index.html'">Back Home</button>
+   </div>
+  <div class="container">
+    <p id="poem"></p>
+  </div>
+
+  <script>
+    const poemText = `
+I sit in the stillness, heart swelling with thoughts of you.
+
+Oh, how do I find words vast enough to hold the way I love you?
+Words tremble beneath the weight of your meaning, your essence,
+And yet, my love tries—because it must.
+
+You are the sun that warms my world,
+The moon that soothes my restless nights,
+The stars that guide me when I feel lost.
+You are my home in a world that never stops moving.
+
+Your laughter—oh, your laughter—
+It is music to a silence I never realized consumed me.
+And your voice—gentle, steady—
+Holds me like the earth holds the sea,
+Balancing chaos with calm.
+
+Every moment with you feels infinite.
+The seconds stretch, sweet and slow,
+As if even time itself knows to savor you.
+The way your hand fits mine,
+The way your smile pulls me closer,
+The way your love fills every empty corner of me—
+These are my treasures.
+
+You are the reason my heart beats steady,
+And the reason it skips at times, too.
+You are the calm in my storms,
+The light I follow through the fog.
+
+You, my love, are everything.
+You are the promise of tomorrow,
+The joy of my today,
+And the echo of every hope I’ve ever held close.
+
+If I could, I’d show you how much you mean to me—
+With the vastness of the oceans,
+With the height of the heavens,
+With the infinite sparkle of every star.
+
+But even they fall short,
+Because you, my love, are the only measure of how much I love you.
+It’s endless. Boundless.
+Forever.
+
+You are my always, my everything.
+And I will carry your heart in mine,
+For as long as the stars shine above us.
+`;
+
+    const poemElement = document.getElementById("poem");
+    const speed = 50; // Typing speed in milliseconds
+    let index = 0;
+
+    function typePoem() {
+      if (index < poemText.length) {
+        poemElement.innerHTML += poemText.charAt(index);
+        index++;
+        poemElement.scrollTop = poemElement.scrollHeight; // Auto-scroll
+        setTimeout(typePoem, speed);
+      }
+    }
+
+    typePoem();
+  </script>
+</body>
+
+</html>

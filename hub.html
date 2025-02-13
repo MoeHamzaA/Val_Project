@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Love Story</title>
+  <style>
+    body {
+      font-family: 'Courier New', Courier, monospace;
+      background: linear-gradient(to bottom, #fbd3e9, #bb377d);
+      color: #fff;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 12px;
+      background-color: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+      text-align: center;
+      color: #ffd1dc;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    p, #reason {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      margin: 10px 0;
+      color: #fff;
+    }
+
+    #reason {
+      border-right: 2px solid #ffd1dc;
+      display: inline;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+    
+
+    .stats p {
+      font-size: 1.1rem;
+      margin: 8px 0;
+      color: #fff;
+    }
+
+    button {
+      font-size: 1rem;
+      color: #fff;
+      background: #ff85a1;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #ff5680;
+    }
+
+    .button-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    /* Card styles */
+    .card {
+      margin-bottom: 20px;
+      padding: 20px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+    }
+
+    #whyILoveYouCard {
+      height: 180px;
+    }
+
+    .heartIcon {
+      position: absolute;
+      top: 20px;
+      right: -5px;
+      font-size: 1rem;
+      color: #ff85a1;
+      animation: heartbeat 1s infinite;
+      transform: scale(0.3); /* Scale down to 50% of its original size */
+      transform-origin: center; /* Ensure scaling happens from the center */
+      
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      p, #reason {
+        font-size: 1rem;
+      }
+
+      button {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+      }
+    }
+    .heart {
+    width: 120px;
+    margin: auto;
+    position: relative;
+    }
+
+    .heart-piece {
+      top: -5px;
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      border-radius: 5px;
+      background: red;
+    }
+
+    .heart-piece:nth-child(1),
+    .heart-piece:nth-child(9) {
+      animation: piece-1 3.2s infinite;
+      animation-delay: 0s;
+    }
+
+    .heart-piece:nth-child(2),
+    .heart-piece:nth-child(8) {
+      animation: piece-2 3.2s infinite;
+      animation-delay: 0.15s;
+    }
+
+    .heart-piece:nth-child(3),
+    .heart-piece:nth-child(7) {
+      animation: piece-3 3.2s infinite;
+      animation-delay: 0.30s;
+    }
+
+    .heart-piece:nth-child(4),
+    .heart-piece:nth-child(6) {
+      animation: piece-4 3.2s infinite;
+      animation-delay: 0.45s;
+    }
+
+    .heart-piece:nth-child(5) {
+      animation: piece-5 3.2s infinite;
+      animation-delay: 0.60s;
+    }
+
+    .heart-piece:nth-child(1) { left: 0; }
+    .heart-piece:nth-child(2) { left: 16px; }
+    .heart-piece:nth-child(3) { left: 32px; }
+    .heart-piece:nth-child(4) { left: 48px; }
+    .heart-piece:nth-child(5) { left: 64px; }
+    .heart-piece:nth-child(6) { left: 80px; }
+    .heart-piece:nth-child(7) { left: 96px; }
+    .heart-piece:nth-child(8) { left: 112px; }
+    .heart-piece:nth-child(9) { left: 128px; }
+
+    @keyframes piece-5 {
+      0%, 10%, 90%, 100% { height: 10px; top: -5px; }
+      45%, 55% { height: 94px; top: -23px; }
+    }
+
+    @keyframes piece-4 {
+      0%, 10%, 90%, 100% { height: 10px; top: -5px; }
+      45%, 55% { height: 90px; top: -31px; }
+    }
+
+    @keyframes piece-3 {
+      0%, 10%, 90%, 100% { height: 10px; top: -5px; }
+      45%, 55% { height: 80px; top: -37px; }
+    }
+
+    @keyframes piece-2 {
+      0%, 10%, 90%, 100% { height: 10px; top: -5px; }
+      45%, 55% { height: 60px; top: -31px; }
+    }
+
+    @keyframes piece-1 {
+      0%, 10%, 90%, 100% { height: 10px; top: -5px; }
+      45%, 55% { height: 30px; top: -15px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="heartIcon">
+    <section class="heart">
+      <div class="heart-piece"></div>
+      <div class="heart-piece"></div>
+      <div class="heart-piece"></div>
+      <div class="heart-piece"></div>
+      <div class="heart-piece"></div>
+      <div class="heart-piece"></div>
+      <div class="heart-piece"></div>
+      <div class="heart-piece"></div>
+      <div class="heart-piece"></div>
+    </section>
+  </div>
+  <div class="container">
+    <!-- Right Side: Reasons -->
+    <div id="whyILoveYouCard" class="card">
+      <h1>Why I Love You</h1>
+      <p id="reason"></p>
+    </div>
+
+    <!-- Left Side: Stats -->
+    <div class="card">
+      <h1>Our Anniversary Stats</h1>
+      <div class="stats">
+        <p><strong>Time passed together:</strong></p>
+        <p id="daysPassed"></p>
+        <p id="hoursPassed"></p>
+        <p id="minutesPassed"></p>
+        <p id="secondsPassed"></p>
+        <p><strong>Anniversaries passed:</strong></p>
+        <p id="monthsPassed"></p>
+        <p id="yearsPassed"></p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h1>A-Z Dates</h1>
+      <p>List of Dates from A-Z</p>
+      <div class="button-container">
+        <button onclick="window.location.href='a-z-dates.html'">View A-Z Date Ideas</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h1>For You</h1>
+      <div class="button-container">
+        <button onclick="window.location.href='poem.html'">Click Me!</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Calculate stats for the anniversary
+    const anniversaryDate = new Date("2024-12-09T18:00:00");
+
+    function updateAnniversaryStats() {
+      const now = new Date();
+      const diffTime = now - anniversaryDate;
+
+      // Calculate days, hours, minutes, seconds
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+      const diffHours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const diffMinutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
+      const diffSeconds = Math.floor((diffTime % (1000 * 60)) / 1000);
+
+      // Calculate months and years
+      const diffMonths = Math.floor(diffDays / 30.44); // Approximate months
+      const diffYears = Math.floor(diffMonths / 12);
+
+      // Update DOM
+      document.getElementById("daysPassed").innerText = `• Days: ${diffDays}`;
+      document.getElementById("hoursPassed").innerText = `• Hours: ${diffHours}`;
+      document.getElementById("minutesPassed").innerText = `• Minutes: ${diffMinutes}`;
+      document.getElementById("secondsPassed").innerText = `• Seconds: ${diffSeconds}`;
+      document.getElementById("monthsPassed").innerText = `• Monthly: ${diffMonths}`;
+      document.getElementById("yearsPassed").innerText = `• Yearly: ${diffYears}`;
+    }
+
+    // Update stats every second
+    setInterval(updateAnniversaryStats, 1000);
+
+    // Typing effect for reasons
+    const reasons = [
+      "You always make me laugh.",
+      "You inspire me to be my best self.",
+      "Your smile lights up my day.",
+      "You listen and understand me.",
+      "You have the kindest heart.",
+      "You see the beauty in the small moments.",
+      "You remind me what it means to truly care.",
+      "Your presence feels like home.",
+      "You bring out the best version of myself.",
+      "You accept me for who I am, flaws and all.",
+      "You make me feel safe and loved.",
+      "You have a way of making everything feel okay.",
+      "You teach me patience and kindness every day.",
+      "You believe in me when I don’t believe in myself.",
+      "You have the most beautiful soul I’ve ever known.",
+      "You make me want to be a better person for you.",
+      "You love me unconditionally, even when I stumble.",
+      "You remind me of the magic in love and connection.",
+      "You bring peace and joy into my chaotic world.",
+      "You make every day worth waking up to.",
+      "You see the beauty in me that I sometimes forget.",
+      "You stand by me through every high and low.",
+      "Your compassion inspires me to be more empathetic.",
+      "You are my biggest cheerleader and supporter.",
+      "You turn ordinary moments into extraordinary memories.",
+      "You challenge me in ways that help me grow.",
+      "You love with all your heart, and it shows.",
+      "You make me feel like I’m the luckiest person alive.",
+      "You make even the hardest days feel manageable.",
+      "You have a strength that I deeply admire.",
+      "You never stop believing in the power of love.",
+      "You make me feel seen, heard, and valued.",
+      "You light up the darkest corners of my life.",
+      "You have a way of making everything better.",
+      "You are my safe haven in a chaotic world.",
+      "Your love feels like the greatest gift I’ve ever received.",
+      "You inspire me to dream bigger and aim higher.",
+      "You see potential in me that I sometimes doubt.",
+      "You love me in ways I never thought possible.",
+      "You fill my life with love, meaning, and purpose.",
+      "You give me hope even when things seem impossible.",
+      "You are my partner, my best friend, and my greatest love.",
+      "You make me believe in a brighter future with you.",
+      "You are my everything, and I cherish every moment with you."
+    ];
+
+    let reasonIndex = 0;
+    let charIndex = 0;
+    const speed = 50; // typing speed
+    const pause = 2000; // pause between reasons
+
+    function typeReason() {
+      if (charIndex < reasons[reasonIndex].length) {
+        document.getElementById("reason").innerHTML += reasons[reasonIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(typeReason, speed);
+      } else {
+        setTimeout(() => {
+          charIndex = 0;
+          document.getElementById("reason").innerHTML = "";
+          reasonIndex = (reasonIndex + 1) % reasons.length;
+          typeReason();
+        }, pause);
+      }
+    }
+
+    typeReason();
+    updateAnniversaryStats(); // Initialize stats
+  </script>
+</body>
+
+</html>

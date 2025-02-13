@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A-Z Date Ideas</title>
+  <style>
+    body {
+      font-family: 'Courier New', Courier, monospace;
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px; /* Ensures a fixed width for the container */
+      padding: 20px;
+      border: 1px solid #ccc;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+      text-align: left;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 10px;
+    }
+
+    .progress-container {
+      width: 100%;
+      margin: 15px 0;
+      text-align: center;
+    }
+
+    .progress-bar {
+      width: 100%;
+      background-color: #ddd;
+      border-radius: 20px;
+      overflow: hidden;
+      height: 20px;
+    }
+
+    .progress {
+      height: 100%;
+      background-color: #007BFF;
+      width: 0%;
+      text-align: center;
+      color: white;
+      line-height: 20px;
+      transition: width 0.3s;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>A-Z Date Ideas</h1>
+    <div class="progress-container">
+      <div class="progress-bar">
+        <div id="progress" class="progress">0%</div>
+      </div>
+    </div>
+    <ul id="dateList"></ul>
+    <button onclick="window.location.href='index.html'">Back to Home</button>
+  </div>
+
+  <script>
+    // A-Z Date ideas (X is removed)
+    const dateIdeas = [
+      "A: Astronomy Stargazing",
+      "B: Beach Picnic",
+      "C: Cafe Date",
+      "D: DIY Craft Night",  
+      "E: Escape Room",
+      "F: Fireworks Show Watching", 
+      "G: Go-Kart Racing",
+      "H: Home Movie Marathon",
+      "I: Ice Skating",
+      "J: Journaling Together", 
+      "K: Keychain Crafting Date",
+      "L: Lego Night",
+      "M: Museum Visit",
+      "N: Nighttime", 
+      "O: Outdoor Cooking (BBQ)", 
+      "P: Painting Date",
+      "Q: Quick Road Trip",
+      "R: Rooftop Dinner",
+      "S: Shopping Spree",
+      "T: Theme Park",
+      "U: U-Pick Farm", 
+      "V: Video Game Night", 
+      "W: Watching the Sunrise/Sunset", 
+      "Y: YouTube Cooking",
+      "Z: Zoo Visit"
+    ];
+
+    const dateList = document.getElementById("dateList");
+    const progressBar = document.getElementById("progress");
+    const savedData = JSON.parse(localStorage.getItem("dateChecklist")) || {};
+
+    // Function to update the progress bar
+    function updateProgress() {
+      const total = dateIdeas.length;
+      const completed = Object.values(savedData).filter(Boolean).length;
+      const progress = Math.round((completed / total) * 100);
+
+      progressBar.style.width = `${progress}%`;
+      progressBar.textContent = `${progress}%`;
+    }
+
+    // Create the list with checkboxes
+    dateIdeas.forEach((idea, index) => {
+      const listItem = document.createElement("li");
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.checked = savedData[index] || false;
+
+      // Save checkbox state and update progress
+      checkbox.addEventListener("change", () => {
+        savedData[index] = checkbox.checked;
+        localStorage.setItem("dateChecklist", JSON.stringify(savedData));
+        updateProgress();
+      });
+
+      listItem.appendChild(checkbox);
+      listItem.appendChild(document.createTextNode(idea));
+      dateList.appendChild(listItem);
+    });
+
+    // Initialize progress bar
+    updateProgress();
+  </script>
+</body>
+</html>
