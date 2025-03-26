@@ -4,200 +4,233 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Love Story</title>
+  <title>Our Love Hub</title>
   <style>
     body {
-      font-family: 'Courier New', Courier, monospace;
-      background: linear-gradient(to bottom, #fbd3e9, #bb377d);
-      color: #fff;
+      font-family: 'Arial', sans-serif;
       margin: 0;
       padding: 20px;
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d1f3d 100%);
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
       align-items: center;
-      min-height: 100vh;
-      overflow-x: hidden;
+      color: #fff;
     }
 
     .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      max-width: 1200px;
       width: 100%;
-      max-width: 600px;
-      margin: 20px auto;
       padding: 20px;
-      border-radius: 12px;
-      background-color: rgba(255, 255, 255, 0.1);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
 
-    h1 {
-      margin-bottom: 20px;
-      font-size: 2rem;
-      text-align: center;
-      color: #ffd1dc;
-      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    }
-
-    p, #reason {
-      font-size: 1.2rem;
-      line-height: 1.8;
-      margin: 10px 0;
-      color: #fff;
-    }
-
-    #reason {
-      border-right: 2px solid #ffd1dc;
-      display: inline;
-      white-space: pre-wrap;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-    }
-    
-
-    .stats p {
-      font-size: 1.1rem;
-      margin: 8px 0;
-      color: #fff;
-    }
-
-    button {
-      font-size: 1rem;
-      color: #fff;
-      background: #ff85a1;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    button:hover {
-      background: #ff5680;
-    }
-
-    .button-container {
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    /* Card styles */
     .card {
-      margin-bottom: 20px;
-      padding: 20px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.2);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      position: relative;
       overflow: hidden;
     }
 
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transform: translateX(-100%);
+      transition: 0.5s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(255, 107, 129, 0.2);
+      border-color: rgba(255, 107, 129, 0.3);
+    }
+
+    .card:hover::before {
+      transform: translateX(100%);
+    }
+
+    h1 {
+      color: #ff6b81;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      text-align: center;
+      text-shadow: 0 0 10px rgba(255, 107, 129, 0.3);
+      position: relative;
+    }
+
+    h1::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ff6b81, transparent);
+    }
+
+    .stats {
+      display: grid;
+      gap: 15px;
+    }
+
+    .stats p {
+      margin: 5px 0;
+      font-size: 1.1rem;
+      color: #fff;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 1.1rem;
+      color: white;
+      background: linear-gradient(45deg, #ff6b81, #ff3b5f);
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 107, 129, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 107, 129, 0.4);
+    }
+
+    button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+      );
+      transition: 0.5s;
+    }
+
+    button:hover::before {
+      left: 100%;
+    }
+
     #whyILoveYouCard {
-      height: 180px;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #reason {
+      flex: 1;
+      min-height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 1.2rem;
+      line-height: 1.5;
+      color: #fff;
+      margin: 0;
+      padding: 10px;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
     }
 
     .heartIcon {
-      position: absolute;
+      position: fixed;
       top: 20px;
-      right: -5px;
-      font-size: 1rem;
-      color: #ff85a1;
-      animation: heartbeat 1s infinite;
-      transform: scale(0.3); /* Scale down to 50% of its original size */
-      transform-origin: center; /* Ensure scaling happens from the center */
-      
+      right: 20px;
+      z-index: 1000;
+      animation: float 3s ease-in-out infinite;
     }
 
-    /* Responsive Design */
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
     @media (max-width: 768px) {
-      h1 {
-        font-size: 1.8rem;
+      .container {
+        grid-template-columns: 1fr;
+        padding: 10px;
+        gap: 20px;
       }
 
-      p, #reason {
+      .card {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .stats p {
         font-size: 1rem;
       }
 
       button {
-        font-size: 0.9rem;
-        padding: 8px 16px;
+        padding: 10px 20px;
+        font-size: 1rem;
+      }
+
+      #whyILoveYouCard {
+        min-height: 180px;
+      }
+
+      #reason {
+        min-height: 80px;
+        font-size: 1.1rem;
       }
     }
-    .heart {
-    width: 120px;
-    margin: auto;
-    position: relative;
-    }
 
-    .heart-piece {
-      top: -5px;
-      width: 10px;
-      height: 10px;
-      position: absolute;
-      border-radius: 5px;
-      background: red;
-    }
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
 
-    .heart-piece:nth-child(1),
-    .heart-piece:nth-child(9) {
-      animation: piece-1 3.2s infinite;
-      animation-delay: 0s;
-    }
+      .container {
+        gap: 15px;
+      }
 
-    .heart-piece:nth-child(2),
-    .heart-piece:nth-child(8) {
-      animation: piece-2 3.2s infinite;
-      animation-delay: 0.15s;
-    }
+      .card {
+        padding: 15px;
+      }
 
-    .heart-piece:nth-child(3),
-    .heart-piece:nth-child(7) {
-      animation: piece-3 3.2s infinite;
-      animation-delay: 0.30s;
-    }
+      #whyILoveYouCard {
+        min-height: 160px;
+      }
 
-    .heart-piece:nth-child(4),
-    .heart-piece:nth-child(6) {
-      animation: piece-4 3.2s infinite;
-      animation-delay: 0.45s;
-    }
-
-    .heart-piece:nth-child(5) {
-      animation: piece-5 3.2s infinite;
-      animation-delay: 0.60s;
-    }
-
-    .heart-piece:nth-child(1) { left: 0; }
-    .heart-piece:nth-child(2) { left: 16px; }
-    .heart-piece:nth-child(3) { left: 32px; }
-    .heart-piece:nth-child(4) { left: 48px; }
-    .heart-piece:nth-child(5) { left: 64px; }
-    .heart-piece:nth-child(6) { left: 80px; }
-    .heart-piece:nth-child(7) { left: 96px; }
-    .heart-piece:nth-child(8) { left: 112px; }
-    .heart-piece:nth-child(9) { left: 128px; }
-
-    @keyframes piece-5 {
-      0%, 10%, 90%, 100% { height: 10px; top: -5px; }
-      45%, 55% { height: 94px; top: -23px; }
-    }
-
-    @keyframes piece-4 {
-      0%, 10%, 90%, 100% { height: 10px; top: -5px; }
-      45%, 55% { height: 90px; top: -31px; }
-    }
-
-    @keyframes piece-3 {
-      0%, 10%, 90%, 100% { height: 10px; top: -5px; }
-      45%, 55% { height: 80px; top: -37px; }
-    }
-
-    @keyframes piece-2 {
-      0%, 10%, 90%, 100% { height: 10px; top: -5px; }
-      45%, 55% { height: 60px; top: -31px; }
-    }
-
-    @keyframes piece-1 {
-      0%, 10%, 90%, 100% { height: 10px; top: -5px; }
-      45%, 55% { height: 30px; top: -15px; }
+      #reason {
+        min-height: 70px;
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
@@ -216,14 +249,13 @@
       <div class="heart-piece"></div>
     </section>
   </div>
+
   <div class="container">
-    <!-- Right Side: Reasons -->
     <div id="whyILoveYouCard" class="card">
       <h1>Why I Love You</h1>
       <p id="reason"></p>
     </div>
 
-    <!-- Left Side: Stats -->
     <div class="card">
       <h1>Our Anniversary Stats</h1>
       <div class="stats">
@@ -240,7 +272,7 @@
 
     <div class="card">
       <h1>A-Z Dates</h1>
-      <p>List of Dates from A-Z</p>
+      <p>Track our date ideas and adventures</p>
       <div class="button-container">
         <button onclick="window.location.href='a-z-dates.html'">View A-Z Date Ideas</button>
       </div>
@@ -248,6 +280,7 @@
 
     <div class="card">
       <h1>For You</h1>
+      <p>A special message just for you</p>
       <div class="button-container">
         <button onclick="window.location.href='poem.html'">Click Me!</button>
       </div>
@@ -272,88 +305,71 @@
       const diffMonths = Math.floor(diffDays / 30.44); // Approximate months
       const diffYears = Math.floor(diffMonths / 12);
 
-      // Update DOM
-      document.getElementById("daysPassed").innerText = `• Days: ${diffDays}`;
-      document.getElementById("hoursPassed").innerText = `• Hours: ${diffHours}`;
-      document.getElementById("minutesPassed").innerText = `• Minutes: ${diffMinutes}`;
-      document.getElementById("secondsPassed").innerText = `• Seconds: ${diffSeconds}`;
-      document.getElementById("monthsPassed").innerText = `• Monthly: ${diffMonths}`;
-      document.getElementById("yearsPassed").innerText = `• Yearly: ${diffYears}`;
+      // Update the display
+      document.getElementById("daysPassed").textContent = `${diffDays} days`;
+      document.getElementById("hoursPassed").textContent = `${diffHours} hours`;
+      document.getElementById("minutesPassed").textContent = `${diffMinutes} minutes`;
+      document.getElementById("secondsPassed").textContent = `${diffSeconds} seconds`;
+      document.getElementById("monthsPassed").textContent = `${diffMonths} months`;
+      document.getElementById("yearsPassed").textContent = `${diffYears} years`;
     }
 
     // Update stats every second
+    updateAnniversaryStats();
     setInterval(updateAnniversaryStats, 1000);
 
-    // Typing effect for reasons
+    // Array of reasons why I love you
     const reasons = [
-      "You always make me laugh.",
-      "You inspire me to be my best self.",
-      "Your smile lights up my day.",
-      "You listen and understand me.",
-      "You have the kindest heart.",
-      "You see the beauty in the small moments.",
-      "You remind me what it means to truly care.",
-      "Your presence feels like home.",
-      "You bring out the best version of myself.",
-      "You accept me for who I am, flaws and all.",
-      "You make me feel safe and loved.",
-      "You have a way of making everything feel okay.",
-      "You teach me patience and kindness every day.",
-      "You believe in me when I don’t believe in myself.",
-      "You have the most beautiful soul I’ve ever known.",
-      "You make me want to be a better person for you.",
-      "You love me unconditionally, even when I stumble.",
-      "You remind me of the magic in love and connection.",
-      "You bring peace and joy into my chaotic world.",
-      "You make every day worth waking up to.",
-      "You see the beauty in me that I sometimes forget.",
-      "You stand by me through every high and low.",
-      "Your compassion inspires me to be more empathetic.",
-      "You are my biggest cheerleader and supporter.",
-      "You turn ordinary moments into extraordinary memories.",
-      "You challenge me in ways that help me grow.",
-      "You love with all your heart, and it shows.",
-      "You make me feel like I’m the luckiest person alive.",
-      "You make even the hardest days feel manageable.",
-      "You have a strength that I deeply admire.",
-      "You never stop believing in the power of love.",
-      "You make me feel seen, heard, and valued.",
-      "You light up the darkest corners of my life.",
-      "You have a way of making everything better.",
-      "You are my safe haven in a chaotic world.",
-      "Your love feels like the greatest gift I’ve ever received.",
-      "You inspire me to dream bigger and aim higher.",
-      "You see potential in me that I sometimes doubt.",
-      "You love me in ways I never thought possible.",
-      "You fill my life with love, meaning, and purpose.",
-      "You give me hope even when things seem impossible.",
-      "You are my partner, my best friend, and my greatest love.",
-      "You make me believe in a brighter future with you.",
-      "You are my everything, and I cherish every moment with you."
+      "Your smile brightens my darkest days",
+      "The way you make me laugh",
+      "Your kindness towards others",
+      "How you understand me like no one else",
+      "Your beautiful heart and soul",
+      "The way you care for me",
+      "Your strength and determination",
+      "How you make me feel special",
+      "Your amazing personality",
+      "The way you love me unconditionally"
     ];
 
-    let reasonIndex = 0;
-    let charIndex = 0;
-    const speed = 50; // typing speed
-    const pause = 2000; // pause between reasons
+    let currentReasonIndex = 0;
+    let currentCharIndex = 0;
+    const typingSpeed = 50; // milliseconds per character
+    const pauseBetweenReasons = 2000; // pause before starting to type the next reason
 
     function typeReason() {
-      if (charIndex < reasons[reasonIndex].length) {
-        document.getElementById("reason").innerHTML += reasons[reasonIndex].charAt(charIndex);
-        charIndex++;
-        setTimeout(typeReason, speed);
+      const reasonElement = document.getElementById("reason");
+      const currentReason = reasons[currentReasonIndex];
+
+      if (currentCharIndex < currentReason.length) {
+        // Add the next character
+        reasonElement.textContent = currentReason.substring(0, currentCharIndex + 1);
+        currentCharIndex++;
+        setTimeout(typeReason, typingSpeed);
       } else {
-        setTimeout(() => {
-          charIndex = 0;
-          document.getElementById("reason").innerHTML = "";
-          reasonIndex = (reasonIndex + 1) % reasons.length;
-          typeReason();
-        }, pause);
+        // When finished typing, wait before starting to delete
+        setTimeout(deleteReason, pauseBetweenReasons);
       }
     }
 
+    function deleteReason() {
+      const reasonElement = document.getElementById("reason");
+      const currentReason = reasons[currentReasonIndex];
+
+      if (currentCharIndex > 0) {
+        // Remove the last character
+        reasonElement.textContent = currentReason.substring(0, currentCharIndex - 1);
+        currentCharIndex--;
+        setTimeout(deleteReason, typingSpeed / 2); // Delete faster than typing
+      } else {
+        // When finished deleting, move to next reason
+        currentReasonIndex = (currentReasonIndex + 1) % reasons.length;
+        setTimeout(typeReason, typingSpeed);
+      }
+    }
+
+    // Start the typing animation
     typeReason();
-    updateAnniversaryStats(); // Initialize stats
   </script>
 </body>
 

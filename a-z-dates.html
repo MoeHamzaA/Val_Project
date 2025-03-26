@@ -3,149 +3,345 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A-Z Date Ideas</title>
+  <title>Our A-Z Date Ideas</title>
   <style>
     body {
-      font-family: 'Courier New', Courier, monospace;
-      background-color: #f9f9f9;
-      color: #333;
+      font-family: 'Arial', sans-serif;
       margin: 0;
       padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d1f3d 100%);
+      min-height: 100vh;
+      color: #fff;
     }
 
     .container {
-      width: 100%;
-      max-width: 600px; /* Ensures a fixed width for the container */
+      max-width: 800px;
+      margin: 0 auto;
       padding: 20px;
-      border: 1px solid #ccc;
-      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-      text-align: left;
-      box-sizing: border-box;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     h1 {
-      font-size: 1.8rem;
-      margin-bottom: 10px;
+      color: #ff6b81;
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2.5rem;
+      text-shadow: 0 0 10px rgba(255, 107, 129, 0.3);
+      position: relative;
     }
 
-    ul {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    li {
-      margin-bottom: 10px;
-    }
-
-    input[type="checkbox"] {
-      margin-right: 10px;
+    h1::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #ff6b81, transparent);
     }
 
     .progress-container {
-      width: 100%;
-      margin: 15px 0;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 15px;
+      margin-bottom: 30px;
       text-align: center;
     }
 
     .progress-bar {
       width: 100%;
-      background-color: #ddd;
-      border-radius: 20px;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
       overflow: hidden;
-      height: 20px;
+      margin-top: 10px;
     }
 
     .progress {
       height: 100%;
-      background-color: #007BFF;
+      background: linear-gradient(90deg, #ff6b81, #ff3b5f);
       width: 0%;
-      text-align: center;
+      transition: width 0.5s ease;
+    }
+
+    .progress-text {
+      color: #ff6b81;
+      font-size: 1.2rem;
+      margin-bottom: 5px;
+      text-shadow: 0 0 5px rgba(255, 107, 129, 0.3);
+    }
+
+    .date-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .date-item {
+      background: rgba(255, 255, 255, 0.05);
+      margin: 15px 0;
+      padding: 20px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .date-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transform: translateX(-100%);
+      transition: 0.5s;
+    }
+
+    .date-item:hover {
+      transform: translateX(10px);
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 107, 129, 0.3);
+    }
+
+    .date-item:hover::before {
+      transform: translateX(100%);
+    }
+
+    .date-item.completed {
+      background: rgba(255, 107, 129, 0.1);
+      border-color: rgba(255, 107, 129, 0.3);
+    }
+
+    .date-item.completed .date-text {
+      text-decoration: line-through;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .date-letter {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ff6b81;
+      margin-right: 15px;
+      text-shadow: 0 0 5px rgba(255, 107, 129, 0.3);
+    }
+
+    .date-text {
+      flex: 1;
+      font-size: 1.1rem;
+      color: #fff;
+      margin: 0;
+      transition: all 0.3s ease;
+    }
+
+    .checkbox {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #ff6b81;
+      border-radius: 50%;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s ease;
+      background: transparent;
+    }
+
+    .checkbox.checked {
+      background: #ff6b81;
+      box-shadow: 0 0 10px rgba(255, 107, 129, 0.5);
+    }
+
+    .checkbox.checked::after {
+      content: '✓';
+      position: absolute;
       color: white;
-      line-height: 20px;
-      transition: width 0.3s;
+      font-size: 14px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .back-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      padding: 12px 25px;
+      font-size: 1.1rem;
+      color: white;
+      background: linear-gradient(45deg, #ff6b81, #ff3b5f);
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 107, 129, 0.3);
+      z-index: 1000;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .back-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 107, 129, 0.4);
+    }
+
+    .back-button::before {
+      content: '←';
+      font-size: 1.2rem;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 15px;
+        margin: 10px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .date-item {
+        padding: 15px;
+      }
+
+      .date-letter {
+        font-size: 1.3rem;
+      }
+
+      .date-text {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+
+      .container {
+        padding: 10px;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .date-item {
+        padding: 12px;
+      }
+
+      .back-button {
+        padding: 10px 20px;
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
+  <a href="hub.html" class="back-button">Back</a>
   <div class="container">
-    <h1>A-Z Date Ideas</h1>
+    <h1>Our A-Z Date Ideas</h1>
     <div class="progress-container">
+      <div class="progress-text">Progress: <span id="progressCount">0</span>/26</div>
       <div class="progress-bar">
-        <div id="progress" class="progress">0%</div>
+        <div class="progress" id="progressBar"></div>
       </div>
     </div>
-    <ul id="dateList"></ul>
-    <button onclick="window.location.href='index.html'">Back to Home</button>
+    <ul class="date-list" id="dateList">
+      <!-- Date items will be added here by JavaScript -->
+    </ul>
   </div>
 
   <script>
-    // A-Z Date ideas (X is removed)
     const dateIdeas = [
-      "A: Astronomy Stargazing",
-      "B: Beach Picnic",
-      "C: Cafe Date",
-      "D: DIY Craft Night",  
-      "E: Escape Room",
-      "F: Fireworks Show Watching", 
-      "G: Go-Kart Racing",
-      "H: Home Movie Marathon",
-      "I: Ice Skating",
-      "J: Journaling Together", 
-      "K: Keychain Crafting Date",
-      "L: Lego Night",
-      "M: Museum Visit",
-      "N: Nighttime", 
-      "O: Outdoor Cooking (BBQ)", 
-      "P: Painting Date",
-      "Q: Quick Road Trip",
-      "R: Rooftop Dinner",
-      "S: Shopping Spree",
-      "T: Theme Park",
-      "U: U-Pick Farm", 
-      "V: Video Game Night", 
-      "W: Watching the Sunrise/Sunset", 
-      "Y: YouTube Cooking",
-      "Z: Zoo Visit"
+      "Astronomy Stargazing",
+      "Beach Picnic",
+      "Cafe Date",
+      "DIY Craft Night",
+      "Escape Room",
+      "Fireworks Watching",
+      "Go-Kart Racing",
+      "Home Movie Night",
+      "Ice Skating",
+      "Journaling Together",
+      "Keychain Crafting Date",
+      "Lego Night",
+      "Museum Visit",
+      "Nature Walk",
+      "Outdoor BBQ",
+      "Painting Date",
+      "Quick Road Trip",
+      "Rooftop Dinner",
+      "Sunset Watching",
+      "Theater Show",
+      "U-Pick Farm",
+      "Video Game Night",
+      "Writing Letters",
+      "X-otic Cuisine",
+      "Youtube Cooking",
+      "Zoo Visit"
     ];
 
-    const dateList = document.getElementById("dateList");
-    const progressBar = document.getElementById("progress");
-    const savedData = JSON.parse(localStorage.getItem("dateChecklist")) || {};
+    const dateList = document.getElementById('dateList');
+    const progressBar = document.getElementById('progressBar');
+    const progressCount = document.getElementById('progressCount');
 
-    // Function to update the progress bar
+    // Load saved state from localStorage
+    let completedDates = JSON.parse(localStorage.getItem('completedDates')) || [];
+
     function updateProgress() {
-      const total = dateIdeas.length;
-      const completed = Object.values(savedData).filter(Boolean).length;
-      const progress = Math.round((completed / total) * 100);
-
+      const progress = (completedDates.length / dateIdeas.length) * 100;
       progressBar.style.width = `${progress}%`;
-      progressBar.textContent = `${progress}%`;
+      progressCount.textContent = completedDates.length;
     }
 
-    // Create the list with checkboxes
-    dateIdeas.forEach((idea, index) => {
-      const listItem = document.createElement("li");
-      const checkbox = document.createElement("input");
-      checkbox.type = "checkbox";
-      checkbox.checked = savedData[index] || false;
-
-      // Save checkbox state and update progress
-      checkbox.addEventListener("change", () => {
-        savedData[index] = checkbox.checked;
-        localStorage.setItem("dateChecklist", JSON.stringify(savedData));
+    function createDateItem(date, index) {
+      const li = document.createElement('li');
+      li.className = `date-item ${completedDates.includes(index) ? 'completed' : ''}`;
+      
+      const letter = document.createElement('span');
+      letter.className = 'date-letter';
+      letter.textContent = date[0];
+      
+      const text = document.createElement('span');
+      text.className = 'date-text';
+      text.textContent = date;
+      
+      const checkbox = document.createElement('div');
+      checkbox.className = `checkbox ${completedDates.includes(index) ? 'checked' : ''}`;
+      
+      checkbox.addEventListener('click', () => {
+        if (completedDates.includes(index)) {
+          completedDates = completedDates.filter(i => i !== index);
+        } else {
+          completedDates.push(index);
+        }
+        localStorage.setItem('completedDates', JSON.stringify(completedDates));
+        li.classList.toggle('completed');
+        checkbox.classList.toggle('checked');
         updateProgress();
       });
+      
+      li.appendChild(letter);
+      li.appendChild(text);
+      li.appendChild(checkbox);
+      return li;
+    }
 
-      listItem.appendChild(checkbox);
-      listItem.appendChild(document.createTextNode(idea));
-      dateList.appendChild(listItem);
+    // Create and append all date items
+    dateIdeas.forEach((date, index) => {
+      dateList.appendChild(createDateItem(date, index));
     });
 
-    // Initialize progress bar
+    // Initial progress update
     updateProgress();
   </script>
 </body>

@@ -1195,46 +1195,70 @@ body {
 
 .content {
   position: absolute;
-  top: 40%; /* Adjust placement for a balanced look */
+  top: 40%;
   width: 100%;
   text-align: center;
-  
-}
-.content2 {
-  position: absolute;
-  top: 20%; /* Adjust placement for a balanced look */
-  width: 100%;
-  text-align: center;
-  
+  padding: 20px;
+  z-index: 1000;
 }
 
 .title {
-  font-size: 5rem;
+  font-size: clamp(2.5rem, 8vw, 5rem);
   color: #fff;
   margin-bottom: 20px;
-  font-family: 'Great Vibes', cursive; /* Romantic font for Valentine's vibe */
-  
-
+  font-family: 'Great Vibes', cursive;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .next-button {
-  padding: 10px 25px;
-  font-size: 2.5rem;
+  padding: 12px 30px;
+  font-size: clamp(1.2rem, 4vw, 2.5rem);
   color: #fff;
-  background-color: #ff6b81; /* Romantic pink/red tone */
+  background-color: #ff6b81;
   border: none;
-  border-radius: 10px;
+  border-radius: 25px;
   cursor: pointer;
-  
-  font-family: 'Courier New', Courier, monospace; /* Balanced with existing styles */
+  font-family: 'Courier New', Courier, monospace;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 107, 129, 0.3);
+  margin-top: 20px;
 }
 
 .next-button:hover {
-  transform: scale(1.1);
-  background-color: #ff3b5f; /* Darker shade for hover */
+  transform: scale(1.05);
+  background-color: #ff3b5f;
+  box-shadow: 0 6px 20px rgba(255, 107, 129, 0.4);
 }
 
 .not-loaded .content {
-  display: none; /* Ensure content is hidden before animation starts */
+  display: none;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 20px 0;
+  }
+
+  .flowers {
+    transform: scale(0.7);
+  }
+
+  .content {
+    top: 50%;
+  }
+
+  .title {
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .flowers {
+    transform: scale(0.5);
+  }
+
+  .content {
+    top: 60%;
+  }
 }
 
